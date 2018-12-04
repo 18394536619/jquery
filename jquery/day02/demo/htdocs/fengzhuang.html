@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload=function(){
+
+			function encodeFormData(data){
+				if(!data){
+					return "";
+				}
+				var pairs = [];
+				for(var name in data){
+					if(!data.hasOwnProperty(name)){
+						continue;
+					}
+					if(typeof data[name] == "function"){
+						continue;
+					}
+					var value = data[name].toString();
+					name = encodeURIComponent(name).replace("%20","+");//编码名字
+					value = encodeURIComponent(value).replace("%20","+");//编码值
+					pairs.push(name+"="+value);
+				}
+				return pairs.join('&');
+			}
+
+
+
+
+			function getData(url,handler){
+				//1.获取request实例对象
+				var request=new XMLHttpRequest();
+				//2.设置请求方式 请求地址
+				request.open("POST",url);
+				//3.设置请求头
+				request.setRequestHeader("content-type", "text/plain;charset=utf-8");
+				//4.发送请求
+				var o={
+					name:'lisi',
+					age:12
+				}
+				request.send(encodeFormData(o));
+				//5.监听响应
+				request.onreadystatechange=function(){
+					if(request.status===200 && request.readyState===4){
+						var text=request.responseText;
+						handler(text);
+					}
+				}
+
+			}
+
+		//自定义调用
+		var btns=document.getElementsByTagName("button");
+		btns[0].onclick=function(){
+			getData("data.json",function(data){
+				console.log(JSON.parse(data),"这个data.json的数据");
+			})
+
+			//getData(url,handler);
+		}
+
+		btns[1].onclick=function(){
+			getData("stus.json",function(data){
+				console.log(JSON.parse(data),"这是student.json数据");
+			});
+		}
+
+
+
+
+		}
+	</script>
+</head>
+<body>
+	<button>获取数据</button>
+	<button>请求学生数据</button>
+	<hr>
+	<table>
+		
+	</table>
+</body>
+</html>

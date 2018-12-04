@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/jquery-2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			//1.请求年级数据
+			$.getJSON("data/grade.json",function(data){
+				data.forEach(function(item){
+					var option="<option value='"+item.gradeId+"'>"+item.gradeName+"</option>";
+					$("#grade").append(option);
+
+				});
+			});
+			//2.监听年级change事件
+			$("#grade").change(function(){
+				$("#clazz").attr("disabled",false);
+				$("#clazz").children(':not(:first)').remove();
+				$.getJSON("data/clazz.json",function(data){
+					var gradeId=$("#grade").val();
+					data.forEach(function(item){
+						if(gradeId==item.g_id){
+							var option="<option value='"+item.clazzId+"'>"+item.clazzName+"</option>";
+							$("#clazz").append(option);
+						}
+					});
+				});
+
+
+			});
+
+			//3.监听班级的change事件
+			$("#clazz").change(function(){
+				$("#student").attr("disabled",false);
+				$("#student").children(':not(:first)').remove();
+
+				$.getJSON("data/student.json",function(data){
+					var clazzId=$("#clazz").val();
+					data.forEach(function(item){
+						if(item.c_id==clazzId){
+							var option="<option value='"+item.studentId+"'>"+item.studentName+"</option>";
+							$("#student").append(option);
+						}
+
+					});
+				});
+
+
+			});
+
+
+
+
+
+
+
+		});
+	</script>
+</head>
+<body>
+	年级：
+		<select name="" id="grade">
+			<option value="">---请选择年级---</option>
+		</select>
+	班级：
+		<select name="" id="clazz" disabled="">
+			<option value="">---请选择班级---</option>
+		</select>
+	学生：
+		<select name="" id="student" disabled="">
+			<option value="">---请选择学生---</option>
+		</select>
+</body>
+</html>

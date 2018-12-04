@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jquerytest</title>
+		<style type="text/css">
+			.five{
+				display: none;
+			}
+			.four{
+				visibility: hidden;
+			}
+		</style>
+		<script type="text/javascript" src="./jquery-3.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var a=$('.container');
+				var b=$('#footer');
+				var c=$('div');
+				var d=$('*');
+				var e=$('.container,#footer');
+				var f=$('div.one');
+				var g=$('.container div');
+				var h=$('.container>div');
+				var i=$('.one+div');
+				var j=$('.one~div');
+				var k=$('.container>div:first');
+				var l=$('.container>div:last');
+				var m=$('.container>div:even');//偶数
+				var n=$('.container>div:odd');//奇数
+				var o=$('.container>div:eq(3)');
+				var p=$('.container>div:lt(3)');
+				var q=$('.container>div:not(#two)');
+				var rr=$('.container>div:contains("hello")');//参数为字符串
+				var s=$('.container>div:empty');//选择空元素
+				var t=$('.container>div:parent');//选取非空元素
+				var u=$('.container>div:has(text)');//选取包含text元素的div
+				var v=$('.container>div:hidden');//不占据空间
+				var w=$('.container>div:visible');//占据空间
+				console.log(a);
+				console.log(b);
+				console.log(c);
+				console.log(d);
+				console.log(e);
+				console.log(f);
+				console.log(g);
+				console.log(h);
+				console.log(i);
+				console.log(j);
+				console.log(k);
+				console.log(l);
+				console.log(m);
+				console.log(n);
+				console.log(o);
+				console.log(p);
+				console.log(q);
+				console.log(rr);
+				console.log(s);
+				console.log(t);
+				console.log('++',u);
+				console.log('++',v);
+				console.log('--',w);
+				var aa=$('.container>div[name]');//选取含有name属性的元素
+				var bb=$('.container>div[name=a]');//选取有name属性且name属性值为a的元素
+				var cc=$('.container>div[name^=a]');//选取有name属性且name属性值以a开头的元素
+				var dd=$('.container>div[name$=a]');//选取有name属性且name属性值以a结束的元素
+				var ee=$('.container>div[name*=a]');//选取有name属性且name属性值包含a的元素
+				
+				var ff=$('.container>div:first-child');//第一个子元素
+				var gg=$('.container>p:last-child');//最后一个子元素
+				var hh=$('.container>div:last-of-type');//最后一个div子元素
+				var ii=$('div:only-child');//获取唯一的子元素
+				var jj=$('.container>div:nth-child(2)');//index从1开始
+				console.log('----',aa);
+				console.log(bb);
+				console.log(cc);
+				console.log(dd);
+				console.log(ee);
+				console.log('first-child:',ff);
+				console.log('last-child:',gg);
+				console.log('last-of-type',hh);
+				console.log('only-child:',ii);
+				console.log('nth-child:',jj);
+			})
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="one" name="ab">
+				<div id="one-1">
+					<div class="one-2"></div>
+				</div>
+			</div>
+			<div id="two">
+				
+			</div>
+			<div class="three" name="a">hello world</div>
+			<div class="four"></div>
+			<div class="five" name="abcd">
+				<span>3</span>
+				<text>2</text>
+			</div>
+			<div name="abca">
+				<text>1</text>
+			</div>
+			<p></p>
+		</div>
+		<div id="footer">
+			
+		</div>
+	</body>
+</html>

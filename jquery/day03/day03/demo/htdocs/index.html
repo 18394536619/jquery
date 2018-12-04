@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/jquery-2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			//1.封装请求数据函数
+			function getJSON(url,handler){
+				//1.1获取请求对象request
+				var request=new XMLHttpRequest();
+
+				//1.2.设置请求方式以及请求路径
+				request.open("GET",url);
+
+				//1.3.设置请求头
+				request.setRequestHeader("Content-type", "text/plain;charset=utf-8");
+
+				//1.4.发送请求
+					request.send();
+
+				//1.5.监听响应
+				request.onreadystatechange=function(){
+					if(request.readyState==4 && request.status==200){
+						var text=request.responseText;
+						handler(text);
+					}
+				}
+
+			}//封装函数结束
+
+		//2.请求年级数据
+		getJSON("data/grade.json",function(results){
+			var grades=JSON.parse(results);
+			grades.forEach(function(item){
+			var option="<option value='"+item.gradeId+"'>"+item.gradeName+"</option>";
+				$("#grade").append(option);
+			});
+
+		});
+
+
+		//3.给grade 绑定一个change事件
+		$("#grade").change(function(){
+			//1.移除班级select的禁用属性
+			$("#clazz").attr("disabled",false);
+			//2.清空clazz班级下的所有数据
+			$("#clazz").children(":not(:first)").remove();
+			//3.匹配当前年级下的班级
+			var gradeId=$("#grade").val();
+			//4.获取所有班级数据
+			getJSON("data/clazz.json",function(results){
+				var clazzes=JSON.parse(results);
+
+				clazzes.forEach(function(item){
+					if(gradeId==item.g_id){
+						var option="<option value='"+item.clazzId+"'>"+item.clazzName+"</option>";
+						$("#clazz").append(option);
+					}
+
+
+				});
+
+			});
+
+		});
+
+
+	//3.监听班级数据的改变
+	$("#clazz").change(function(){
+		$("#student").attr("disabled",false);
+		$("#student").children(":not(:first)").remove();
+		var clazzId=$("#clazz").val();
+		getJSON("data/student.json",function(results){
+			var students=JSON.parse(results);
+			students.forEach(function(item){
+				if(clazzId==item.c_id){
+					var option="<option value='"+item.studentId+"'>"+item.studentName+"</option>";
+					$("#student").append(option);
+				}
+
+			});
+
+		});
+
+
+	});
+
+
+
+
+
+
+		});
+	</script>
+</head>
+<body>
+	年级：
+		<select name="" id="grade">
+			<option value="">---请选择年级---</option>
+		</select>
+	班级：
+		<select name="" id="clazz" disabled="">
+			<option value="">---请选择班级---</option>
+		</select>
+	学生：
+		<select name="" id="student" disabled="">
+			<option value="">---请选择学生---</option>
+		</select>
+</body>
+</html>

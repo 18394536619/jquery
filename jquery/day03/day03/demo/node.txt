@@ -1,0 +1,113 @@
+
+AJAX:
+	异步的javascript和xml语言的结合
+
+
+http:
+	超文本传输协议
+	请求：
+		request
+	响应：
+		response
+
+
+
+构造函数：
+	xmlhttprequest
+	可以获取request的实例对象
+
+
+
+1.获取request的实例对象
+	var request=new XMLHttpRequest();
+
+2.设置请求方式以及请求地址
+	request.open("GET",url);//getStudent.action
+
+3.设置请求头
+	request.setRequestHeader("Content-type","text/plain;charset=utf-8");
+
+
+4.发送请求
+	request.send();//
+		null
+
+		var o={
+			name:'lisi'
+		}
+		
+		1.JSON.stringify(o);	
+			{
+				name:'lisi'
+			}
+		2.form编码
+			name=lisi&age=12
+
+
+
+		o.toString()
+		request.send(o);//[obejct object]
+
+
+
+5.
+	requets.readyState:
+		2
+		3
+		4:响应完成
+
+	request.status=200
+
+	request.onreadyStatechange=function(){
+		if(request.status==200 && request.readyState==4){
+
+			var text=request.responseText;
+			var obj=JSON.parse(text);
+
+
+			}
+	}
+
+
+
+跨域访问：
+	当 协议名称/ip/域名/端口号 不一致时，浏览器会拒绝访问
+
+	本地打开：
+		index.html:
+			file://
+
+
+	远程服务器：
+		data.json
+		http://
+
+
+	html中：
+		src属性的标签
+
+	<script src="http://idenx.js"></script>
+
+
+
+本地：
+	index.html：
+
+		<script>
+			handler("data.json",function(data){
+				console.log(data);
+			})
+		</script>
+		<script src="http://localhost:80/outer.js"></script>
+
+
+	outer.js:
+		function handler(url,handler){
+			handler({
+				name:'lisi'
+			});
+		}
+
+
+
+

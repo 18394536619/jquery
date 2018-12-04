@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	
+		div{
+			width: 500px;
+			height: 250px;
+			border:1px solid red;
+			margin-bottom: 20px
+		}
+		p{
+			width: 100px;
+			height: 100px;
+			border:1px solid blue;
+			float: left;
+			margin: 10px
+		}
+		.hidden{
+			display: none
+			/* visibility: hidden; */
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+	/*var $jquery=$("#oneDiv :nth-child(1)");
+	$jquery.css("background-color",'red');*/
+
+
+
+		//	console.log($jquery);
+
+		var form=$("#twoP");
+		//var result=form.removeAttr("class");
+		//console.log(result);
+
+		$("button")[0].onclick=function(){
+			//var result=$("#twoP").html("<h1>hello</h1>");
+			var result=$("#twoP").text("<h1>hello</h1>");
+			//console.log(result);
+			//$("#twoP").removeClass('hidden');
+			var result=$(":text").val();
+			console.log(result);
+
+		}
+		$("button")[1].onclick=function(){
+			$("#twoP").addClass('hidden');
+		}
+		$("button")[2].onclick=function(){
+			$("#twoP").toggleClass('hidden');
+		}
+
+		//parent.appendChild()
+		var clone=$("#oneP").clone();
+		$("button")[3].onclick=function(){
+			//$("div").append(clone);
+			//clone.appendTo($("div"));
+			//appendChild()
+
+			//$("div").prepend(clone);
+			//clone.prependTo($("div"));
+			var result=$("#twoP").css("background");
+			console.log(result);
+		}
+
+
+
+
+		});
+	</script>
+</head>
+<body>
+	<div id="oneDiv">
+		<p id="oneP">oneP</p>
+		<p id="twoP" class="bgColor flag">
+			<span>world</span>
+		twoP</p>
+		<p class="bgColor">threeP</p>
+		<p class="bgColor" id="hidden"></p>
+	</div>
+	<button>显示</button><button>隐藏</button>
+	<button>切换</button>
+	<button>追加</button><button>替换</button>
+	<div>
+		<p></p>
+		<!-- <h1>heelo</h1>
+		<h2>h2h2h2hh2</h2>
+		<h3>h3h3h3h3h</h3> -->
+	</div>
+	<form action="">
+		姓名：<input type="text" value="战三"><br>
+		年龄： <input type="text" value="23"> <br>
+		性别： <input type="radio">
+		<br>
+		住址： 
+		<select name="" id="">
+			<option value="">上海</option>
+			<option value="">江苏</option>
+			<option value="">内蒙</option>
+		</select>
+		<br>
+		<input type="button">
+		<button>提交</button>
+	</form>
+</body>
+</html>

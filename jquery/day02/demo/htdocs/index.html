@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		table{
+			border-collapse: collapse;
+			margin: 0 auto
+		}
+		th,td{
+			width: 100px;
+			height: 30px;
+			border:1px solid black;
+			text-align: center
+		}
+	</style>
+<script type="text/javascript">
+	window.onload=function(){
+		var btns=document.getElementsByTagName("button")[0];
+		var tbody=document.getElementsByTagName("tbody")[0];
+		btns.onclick=function(){
+
+			//1.获取request实例对象
+			var request=new XMLHttpRequest();
+			console.log(request);
+			//2.设置请求方式以及路径
+			request.open("GET","data.json");
+			//3.设置请求头
+			request.setRequestHeader("content-type", "text/plain;charset=utf-8");
+			//4.发送请求
+			request.send(null);
+			//5.获取响应
+
+	request.onreadystatechange=function(){
+		
+		if(request.readyState===4 && request.status===200){
+			var text=request.responseText;
+			var stus=JSON.parse(text);
+			//删除所有tbody中数据
+
+			var trs=tbody.children;
+			Array.prototype.slice.call(trs).forEach(function(item){
+				tbody.removeChild(item)
+			});
+
+			//追加数据
+
+			stus.forEach(function(item){
+				var newTr=document.createElement("tr");
+				for(var key in item){
+					var newTd=document.createElement("td");
+					newTd.innerHTML=item[key];
+					newTr.appendChild(newTd)
+				}
+
+				tbody.appendChild(newTr);
+
+
+			});
+
+
+
+
+
+
+		}
+
+	}
+
+
+
+
+		}
+	}
+</script>
+</head>
+<body>
+	<button>获取服务器端数据</button>
+	<hr>
+	<table>
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+</body>
+</html>

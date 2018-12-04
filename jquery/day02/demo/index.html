@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+	<script type="text/javascript">
+		window.onload=function(){
+
+			function getData(url,handler){
+				//1.获取request实例对象
+				var request=new XMLHttpRequest();
+				//2.设置请求方式 请求地址
+				request.open("POST",url);
+				//3.设置请求头
+				request.setRequestHeader("content-type", "text/plain;charset=utf-8");
+				//4.发送请求
+				var o={
+					name:'lisi',
+					age:12
+				}
+				request.send();
+				//5.监听响应
+				request.onreadystatechange=function(){
+					if(request.status===200 && request.readyState===4){
+						var text=request.responseText;
+						handler(text);
+					}
+				}
+
+			}
+
+
+			var btn=document.getElementsByTagName("button")[0];
+			btn.onclick=function(){
+				getData("http://localhost:80/data.json",function(data){
+					console.log(data);
+				});
+			}
+
+		}
+
+
+		function sayName(data){
+			console.log(data);
+		}
+	</script>
+	<script type="text/javascript" src="http://localhost:80/index.js"></script>
+</head>
+<body>
+	<button>获取数据</button>
+</body>
+</html>

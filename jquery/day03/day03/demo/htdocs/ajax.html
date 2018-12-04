@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div{
+			width: 200px;
+			height: 200px;
+			border:1px solid red;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			/*$.ajax({
+				type:"POST",
+				data:{name:'lisi'},
+				url:"data/grade.json",
+				success:function(data){
+					console.log(data);
+				},
+				dataType:"json"
+			});*/
+
+			/*$.post("data/clazz.json",{age:12},function(results){
+				console.log(results);
+			});*/
+			//$.post();
+
+
+			/*$.getJSON("data/student.json",{name:'lisi'},function(results){
+				console.log(results);
+			});
+*/
+
+		/*$.getScript("outer.js",function(data){
+			console.log(data);
+		});
+*/
+
+	
+		$("#one").click(function(){
+			$("div").load("inner.html",{name:'lisi'},function(data){
+				console.log(data);
+				alert("加载成功");
+			})
+		});
+
+		$("#two").click(function(){
+			$("div").load("img.html",function(){
+				alert("图片加载成功");
+			});
+		});
+		
+
+		});
+
+
+
+	</script>
+</head>
+<body>
+	<div>
+		
+	</div>
+	<button id="one">加载h1</button>
+	<button id="two">加载图片</button>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ajax</title>
+		<script type="text/javascript" src="./jquery-3.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+//				console.log($('#files'));
+//				console.log($('#uploadButton'));
+				$('#uploadButton').on('click',function(){
+					//获取表单数据
+					var formData = new FormData($('#uploadForm')[0]);
+					$.ajax({
+						type:"post",
+						url:'http://120.78.164.247:8099/manager/file/upload',
+	                    data: formData,
+	                    contentType:false,
+	                    processData: false,
+	                    success : function(result) {
+	                        console.log(result.data);
+	                    },
+	                    error : function(data) {
+	                        console.log(data);
+	                    }
+					});
+			})
+			})
+		</script>
+	</head>
+	<body>
+		<form id="uploadForm" enctype="multipart/form-data">
+			<input type="file" id="files" name="file"/>
+			<input type="button" id="uploadButton" value="上传">
+		</form>
+	</body>
+</html>

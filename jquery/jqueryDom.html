@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Dom操作</title>
+		<style>
+			.container{
+				height: 800px;
+				width: 800px;
+				padding: 10px;
+				opacity: 0.5;
+				background-color: #CCCCCC;
+			}
+			#one,#two{
+				height: 100px;
+				width: 100px;
+				margin-top: 5px;
+				background-color: royalblue;
+			}
+			.xin{
+				height: 100px;
+				width: 100px;
+				margin-top: 5px;
+				background-color: red;
+			}
+			.div1{
+				height: 50px;
+				width: 50px;
+				/*margin-left: 25px;*/
+				margin-top: 5px;
+				background-color: blue;
+			}
+			.div2{
+				border: 2px solid yellow;
+			}
+			section{
+				height: 100px;
+				width: 100px;
+				margin-top: 5px;
+				background-color: green;
+			}
+			.aa{
+				height: 100px;
+				width: 100px;
+			}
+		</style>
+		<script type="text/javascript" src="./jquery-3.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var newdiv=$('<div class="xin">新创建div</div>');//创建div元素
+				$('.container').append(newdiv);//在子元素的后边追加
+				var newdiv1=$('<div class="div1">新创建div</div>');
+//				$(newdiv1).appendTo('.xin');
+//				$('.container').prepend(newdiv);//追加到子元素的前边
+				//$(newdiv1).prependTo('.container');
+				//$('.container>div').after(newdiv1);//追加到每个匹配元素的后边
+				//$('.container>div').before(newdiv1);//追加到每个匹配元素的前边
+				//$(newdiv1).insertAfter('.container>div');//将某元素追加到匹配元素的后边
+				//$(newdiv1).insertBefore('.container>div');//将某元素追击到匹配元素的前边
+				//$('.container>div').remove('#two');//在匹配元素删除选定元素
+				var clonediv=$('.xin').clone(true);//拷贝，true为深拷贝，false为浅拷贝
+				//console.log(clonediv)
+				//var result=$('#two').replaceWith(clonediv);//会删除与节点相关的数据和事件
+				//var result=$(clonediv).replaceAll('#two');//与replaceWith相同
+				//$('#one,#two').wrap('<div class="div2"></div>');//在匹配元素外层包裹一元素
+				//$('#one,#two').wrapAll('<div class="div2"></div>');//将匹配元素当成以整体并在外层添加包裹元素
+				//$('.container').wrapInner('<div class="div2"></div>');//在匹配元素的子元素外边包裹一元素，将多个子元素看成一个整体
+				
+				//var result=$('.container').children('div');
+				//console.log(result)
+				//var result=$('.container').find('section');
+				//var result=$('#one').next('div');//下一个紧邻的元素,如紧邻的下一个不是匹配元素，返回空
+				//var result=$('#one').nextAll('section');//后边所有匹配的元素
+				//var result=$('#two').prev('section');//前边紧邻的元素,如紧邻的元素不是匹配元素，返回空
+				//var result=$('#two').prevAll('section');//前边所有匹配元素
+				//var result=$('.sec').siblings('div');//前后所有的匹配兄弟元素
+				var result=$('.aa').closest('div');//和参数匹配的最近元素（父级，本身）
+//				$("div.aa").css({
+//					"background-color":"yellow",
+//					"height": "100px",
+//					"width": "100px",
+//				});
+				console.log(result)
+//				$("div.aa").css("background-color",function(index,value){
+//					console.log(index);
+//					console.log(value)
+//					return "#cccccc"
+//				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div id="one">
+				one
+			</div>
+			<section class="sec"></section>
+			<div id="two">
+				two
+				<section class="div1">
+					<div class="aa"></div>
+				</section>
+				
+			</div>
+			<section></section>
+		</div>
+	</body>
+</html>

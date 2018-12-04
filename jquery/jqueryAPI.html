@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jqueryAPI</title>
+		<style>
+			.container{
+				height: 500px;
+				width: 200px;
+				border: 1px solid #C0C0C0;
+				background-color: #CCCCCC;
+			}
+			.one{
+				margin-left: 50px;
+				margin-top: 25px;
+				height: 100px;
+				width: 100px;
+				background-color: royalblue;
+			}
+			.two{
+				margin-left: 50px;
+				margin-top: 50px;
+				height: 100px;
+				width: 100px;
+				background-color: darkcyan;
+			}
+			.three{
+				margin-left: 50px;
+				margin-top: 50px;
+				height: 100px;
+				width: 100px;
+				background-color: #00B369;
+			}
+			form{
+				width: 200px;
+			}
+			form input{
+				height: 20px;
+				text-indent: 8px;
+				margin-bottom: 8px;
+			}
+		</style>
+		<script src="./jquery-3.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				//失去焦点事件
+//				$('input').blur(function(){
+//					//没有参数时，获取value值
+//					var a=$('input').val();
+//					console.log(a)
+//				});
+				//聚焦事件
+//				$('input').focus(function(){
+//					//一个参数时设置value值
+//					var a=$('input').val('我是添加的value值');
+//					console.log(a)
+//				})
+				
+//				$('.container').click(function(){
+//					//获取子元素的html代码
+//					var b=$('.one').html();
+//					console.log(b);
+//					console.log('++***++');
+//				});
+				
+//				$('.two').click(function(){
+////					获取文本值
+//					var c=$('.two').text();
+//					console.log(c);
+//				});
+
+				//获取或设置属性值
+//				$('.one').click(function(){
+////					一个参数为获取属性值
+//					var e=$('.one').attr('id');
+////					两个参数，设置属性值
+//					var f=$('.one').attr('name','div1');
+//					console.log('id:',e);
+//					console.log('name:',f[0]);
+//				});
+
+				//设置或获取单值属性				
+//				$('input').click(function(){
+//					var e=$('input').prop('readonly','true');
+//					console.log('readonly:',e);
+//				});
+				
+				
+
+				//移除属性
+//				$('.two').click(function(){
+//					var c=$('.two').attr('name');
+//					console.log($('.two')[0]);
+//					console.log('name:',c);
+//					var d=$('.two').removeAttr('name');
+//					console.log(d[0]);
+//				});
+				
+//				$('.container').click(function(){
+////					添加类名
+//					$('.container>div:last').addClass('three');
+////					判断类名是否存在
+//					console.log($('.container>div:last').hasClass('three'));
+//					//$('.one').removeClass('one');
+//				})
+
+				//Each()
+//				$('.container>div').each(function(index,item){
+//					//item为dom对象
+//					console.log(index);
+//					console.log(item);
+//					$(item).css('color','#ffffff')
+//				})
+
+				//map
+//  			$('.container').click(function(){
+//					//特别适用于获取或设置元素集合中的值,item为Dom对象
+//					var a=$('.container>div').map(function(index,item){
+//						console.log(index);
+//						console.log(item);
+//					})
+//				})
+
+				
+				//first()：获取匹配元素中的第一个
+//				$('.container').click(function(){
+//					var a=$('.container>div').first();
+//					console.log(a);
+//					console.log($('.container>div:first'));
+//				});
+
+//				$('.container').click(function(){
+//					//返回jquery对象，参数为index
+//					var a=$('.container>div').eq(1);
+//					console.log(a);
+//				});
+				
+//				$('.container').click(function(){
+//					//以数组的形式返回DOM对象，无参数是返回符合条件的所有元素，
+//					//参数为index时，返回相应的元素
+//					var a=$('.container>div').get();
+//					console.log(a);
+//				});
+				
+//				$('.container').click(function(){
+//					//返回一个标准的DOM对象数组，无参数
+//					var a=$('.container>div').toArray();
+//					console.log(a);
+//				});	
+
+
+//				$('.container').click(function(){
+//					//filter() 方法将匹配元素集合缩减为匹配指定选择器的元素。
+//					//参数为选择器字符串，返回jquery对象
+//					//参数为匿名函数，返回jquery对象
+//					var a=$('.container>div').filter('.two');
+////					var a=$('.container>div').filter(function(index){
+////						return true
+////					});
+//					console.log(a);
+//				});
+				
+//				$('.container').click(function(){
+//					//从匹配的元素集合中移除指定的元素
+//					var a=$('.container>div').not('.two');
+//					console.log(a);
+//				})
+
+				$('.container').click(function(){
+					var a=$('.container>div').is('.one');
+					console.log(a);
+					var b=$('.container>div').has('span');
+					console.log(b);
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="one" id="one"><div>div1</div></div>
+			<div class="two" name="div2">测试内容</div>
+			<div>
+				<span></span>
+			</div>
+		</div>
+		<form action="#">
+			<fieldset id="">
+				<legend>form表单</legend>
+				<input type="text" placeholder="请输入内容"/>
+			</fieldset>
+		</form>
+	</body>
+</html>

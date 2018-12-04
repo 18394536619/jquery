@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>事件绑定</title>
+		<style>
+			.container{
+				height: 200px;
+				width: 200px;
+				border: 1px solid #C0C0C0;
+				background-color: #CCCCCC;
+			}
+			.one{
+				margin-left: 50px;
+				margin-top: 50px;
+				height: 100px;
+				width: 100px;
+				background-color: royalblue;
+			}
+			form{
+				width: 200px;
+			}
+			form input{
+				height: 20px;
+				text-indent: 8px;
+				margin-bottom: 8px;
+			}
+		</style>
+		<script src="./jquery-3.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				function handler(event){
+					$('.one').css('background-color','green');
+					console.log(event.target);
+					event.stopPropagation()//阻止冒泡
+				}
+				function handler1(event){
+					$('.one').css('background-color','red');
+				}
+				
+				//bind事件绑定
+				//绑定一个事件
+//				$('.container').bind('click',function(event){
+//					$('.container').css('background-color','yellow');
+//				});
+				//多个事件绑定同一个函数
+//				$('.one').bind('click mouseout',function(){
+//					console.log(event.target);
+//				})
+//				//多个事件绑定不同的函数
+//				$('.one').bind({
+//					click:handler,
+//					mouseout:handler1
+//				});
+//				//解绑
+//				$('.one').unbind('click',handler);//删除绑定事件
+				
+				
+				//on事件绑定
+				//绑定一个事件
+				$('.one').on('mouseover',handler1);
+				//多个事件绑定同一个函数
+//				$('.one').on('mouseover mouseout',function(event){
+//					console.log(event.currentTarget);
+//				})
+				//多个事件绑定不同的函数
+//				$('.one').on({
+//					click:handler,
+//					mouseout:handler1
+//				});
+
+				//第一个参数是绑定事件类型
+				//第二个参数进一步筛选选定元素
+				//第三个参数作为event data属性值传递给事件对象的额外数据对象以供事件处理函数处理。
+//				$('div').on('mouseover','.one',[1,2],function(event){
+//					console.log(event.target);
+//					console.log(event.data);
+//				});
+				//解绑
+//				$('.one').off('mouseover',handler1);
+
+				
+				
+				//trigger事件绑定
+//				$('.one').click(function(event){
+//					console.log('+-+-+-');
+//					event.stopPropagation()
+//				});
+//				$('.container').click(function(){
+//					$('.one').trigger('click');
+//				});
+				
+				//聚焦事件
+				$('input').focus(function(){
+					console.log('聚焦啦！')
+				});
+				//元素值发生变化时触发事件
+				$('input').change(function(){
+					console.log('哎呀，我的值变啦')
+				});
+				//失去焦点事件
+				$('input').blur(function(){
+					console.log('哎呀，失去焦点啦！')
+				});
+				//文本元素被选中时触发事件
+				$('textarea').select(function(){
+					console.log('哎呀，我被选中啦！')
+				})
+				//表单提交事件，绑在form上
+				$('form').submit(function(event){
+					console.log('提交表单')
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="one"></div>
+		</div>
+		<form>
+			<fieldset id="">
+				<legend>form表单</legend>
+				<input type="text" placeholder="请输入内容"/>
+				<br />
+				<textarea rows="2" cols="21">选我试试</textarea>
+			</fieldset>
+			<input type="submit" />
+		</form>
+	</body>
+</html>
